@@ -16,7 +16,7 @@ body {
     font-family: "Courier New";
     color : var(--th);
     text-align: center;
-    margin: 50px;
+    margin-top: 50px;
 }
 
 #navbar{

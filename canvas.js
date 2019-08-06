@@ -4,8 +4,8 @@ titleCanvas.height = window.innerHeight;
 
 var ctc = titleCanvas.getContext('2d');
 
-var x = 100;
-var y = 100;
+var x = 0;
+var y = 0;
 
 function update(progress) {
     x++;
@@ -14,7 +14,7 @@ function update(progress) {
 
 function draw() {
     ctc.fillStyle="blue";
-    ctc.fillRect(0,0,canvas.width,canvas.height);
+    ctc.fillRect(0,0,titleCanvas.width,titleCanvas.height);
     ctc.fillStyle="red";
     ctc.fillRect(x,y,100,100);
 };
