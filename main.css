@@ -1,6 +1,6 @@
 :root{
     --th : #ffc375;
-    --hi : #ffdfa3;
+    --hi : #fff8e9;
     --fl : #ffdfa3;
     background: var(--hi);
 }
@@ -52,4 +52,9 @@ nav li:hover{
 
 header, section, footer, aside, nav, article, hgroup{
     display: block;
+}
+
+canvas {
+    border: 1px solid black;
+    
 }
