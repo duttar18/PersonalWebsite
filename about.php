@@ -14,7 +14,7 @@
 
 <body>
     <header>
-        <h1>Rauls site</h1>
+        <h1>About</h1>
     </header>
 
     <section>

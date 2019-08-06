@@ -1,7 +1,7 @@
 :root{
-    --th : #ff75e1;
-    --hi : #000000;
-    --fl : #ffa3f6;
+    --th : #ffc375;
+    --hi : #ffffff;
+    --fl : #ffdfa3;
     background: var(--hi);
 }
 
