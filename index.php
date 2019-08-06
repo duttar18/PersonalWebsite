@@ -5,13 +5,7 @@
     <meta charset="UTF-8">
     <title>Raul's Page</title>
     <link rel="stylesheet" href="main.css">
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
-
-<?
-php include 'header.php';
-?>
-
 
 
 <body>
