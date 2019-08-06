@@ -1,6 +1,6 @@
 :root{
     --th : #ffc375;
-    --hi : #ffffff;
+    --hi : #ffdfa3;
     --fl : #ffdfa3;
     background: var(--hi);
 }
