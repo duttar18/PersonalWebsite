@@ -7,15 +7,10 @@
     <meta charset="UTF-8">
     <title>About</title>
     <link rel="stylesheet" href="main.css">
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
-<nav id = navbar>
-    <ul>
-        <li><a href="ho">Home</a></li>
-        <li><a href="#"></a>Home1</a></li>
-        <li><a href="#"></a>Home2</a></li>
-    </ul>
-</nav>
+<?php require_once "header.php"; ?>
 
 <body>
     <header>
