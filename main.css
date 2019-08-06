@@ -1,0 +1,55 @@
+:root{
+    --th : #ff75e1;
+    --hi : #000000;
+    --fl : #ffa3f6;
+    background: var(--hi);
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+body {
+    font-family: "Courier New";
+    color : var(--th);
+    text-align: center;
+    margin: 50px;
+}
+
+#navbar{
+    margin: auto;
+    width: 100%;
+    background-color: var(--th);
+    color: var(--hi);
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    padding:0px 0px;
+}
+nav ul {    
+    padding: 15px 0px 15px 30px;
+}
+nav li {
+    display: inline;
+    color: white;
+    padding: 15px 20px 15px 20px;
+    margin-right: 20px;
+}
+nav li:hover{
+    animation-name: background-color;
+    animation-duration: 500ms;
+    animation-fill-mode: forwards;
+}
+@keyframes background-color{
+    100%{
+        background-color: var(--fl);
+    }
+}
+
+
+header, section, footer, aside, nav, article, hgroup{
+    display: block;
+}
