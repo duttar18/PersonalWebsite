@@ -57,12 +57,12 @@ for(var i =0; i<10; i++){
 for(var i =0; i<9; i++){
   for(var j =0; j<10; j++){
     points.push(new Point(100+50*j,150+i*50,false));
-    strings.push(new String(i*10+j,i*10+10+j,0.01,50,100));
+    strings.push(new String(i*10+j,i*10+10+j,0.1,50,100));
   }
 }
 for(var i =0; i<9; i++){
   for(var j =0; j<9; j++){
-    strings.push(new String(i*10+10+j,i*10+10+j+1,0.01,50,100));
+    strings.push(new String(i*10+10+j,i*10+10+j+1,0.1,50,100));
   }
 }
 
@@ -100,6 +100,12 @@ function update(progress,e) {
     for(i =0; i<strings.length; i++){
       var d = distance(points[strings[i].a].x,points[strings[i].b].x,points[strings[i].a].y,points[strings[i].b].y);
       var pull = (d-strings[i].l)*strings[i].k;
+      if((d-strings[i].l)/d>1){
+        pull*=10000000000;
+      }
+      if((d-strings[i].l) <0){
+        pull*=0;
+      }
       points[strings[i].a].ax+= pull*(points[strings[i].a].x-points[strings[i].b].x)/d;
       points[strings[i].a].ay+= pull*(points[strings[i].a].y-points[strings[i].b].y)/d;
 
@@ -107,22 +113,26 @@ function update(progress,e) {
       points[strings[i].b].ay-= pull*(points[strings[i].a].y-points[strings[i].b].y)/d;
     }
     for(var i=0; i<points.length; i++){
-      if(points[i].p){
-        points[i].vx=0;
-        points[i].vy=0;
-      }
-      else{
-        points[i].vx+=points[i].ax;
-        points[i].vy+=points[i].ay+0.02;
+      points[i].vx+=points[i].ax;
+      points[i].vy+=points[i].ay+0.1;
+      var lim = 80;
+      var sp = distance(0,points[i].vx,0,points[i].vy);
+      if(sp>lim){
+        points[i].vx*=lim/sp;
+        points[i].vy*=lim/sp
       }
     }
+    for(var i=0; i<held.length; i++){
+      points[held[i]].vx=0;
+      points[held[i]].vy=0;
+    }
     for(var i=0; i<points.length; i++){
-      if(!points[i].p && distance(0,points[i].vx,0,points[i].vy)>0.05){
+      if(!points[i].p){
         points[i].x+=points[i].vx;
         points[i].y+=points[i].vy;
       }
-      points[i].vx*=0.9;
-      points[i].vy*=0.9;
+      points[i].vx*=0.95;
+      points[i].vy*=0.95;
       points[i].ax=0;
       points[i].ay=0;
     }
