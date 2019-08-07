@@ -1,6 +1,6 @@
 var canvas = document.querySelector('canvas#title');
 canvas.width = window.innerWidth;
-canvas.height = '600';
+canvas.height = '300';
 
 var ctx = canvas.getContext('2d');
 
@@ -89,8 +89,8 @@ var held = [];
 var drag = false;
 function mouseDown(event){ 
   for(var i =0; i<points.length; i++){
-    if( (Math.abs(event.clientX-coffset.left-points[i].x)<= (w/(ascii[0].length+1))/3 ) &&
-        (Math.abs(event.clientY-coffset.top-points[i].y)<= (h/(ascii.length+1)))/3  ){
+    if( (Math.abs(event.clientX-coffset.left-points[i].x)<= (w/(ascii[0].length+1))/2 ) &&
+        (Math.abs(event.clientY-coffset.top-points[i].y)<= (h/(ascii.length+1)))/2  ){
       held.push(i);
     }
   }
@@ -106,11 +106,15 @@ function mouseUp(){
   drag = false;
   held = [];
 };
+function mouseOut(){
+  drag = false;
+  held = [];
+};
 function init() {
   canvas.addEventListener('mousedown', mouseDown, false);
   canvas.addEventListener('mouseup', mouseUp, false);
   canvas.addEventListener('mousemove', mouseMove, false);
-
+  canvas.addEventListener('mouseout', mouseOut, false);
 }
 init();
 
@@ -120,14 +124,15 @@ var shade = function(x1,y1,x2,y2,x3,y3,i,j){
   var s = triarea(x1,y1,x2,y2,x3,y3)*2/(w/(ascii[0].length+1)*h/(ascii.length+1));
   
   if(ascii[j].charAt(i)=="0"){
-    return 'rgb(' + 255*s + ','+ 255*s +','+ 255*s +')';
+    return 'rgb(' + 255*s + ','+ 0*s +','+ 0*s +')';
   }
   else{
-    return 'rgb(' + 255*s + ','+ 0 +','+ 0 +')';
+    return 'rgb(' + 255*s + ','+ 255*s +','+ 255*s +')';
   }
   
 };
 
+points[points.length-1-Math.round(ascii[0].length/2)].vy-=40;
 
 function update(progress,e) {
     var d,i;
@@ -186,7 +191,6 @@ function draw() {
       ctx.arc(points[i].x,points[i].y,5,0,2*Math.PI);
       ctx.stroke();
     }*/
-
     for(var j = 0; j<(ascii.length+1)-1; j+=1){
       for( i = 0; i <(ascii[0].length+1)-1;i+=1){
         var x1=points[i+j*(ascii[0].length+1)].x;
@@ -229,6 +233,16 @@ function draw() {
           ctx.fill();
         }
 
+      }
+    }
+
+
+    for(var i =0; i<points.length; i++){
+      if(points[i].p){
+        ctx.fillStyle='rgba(255,255,25,25)';
+        ctx.beginPath();
+        ctx.arc(points[i].x,points[i].y,5,0,2*Math.PI);
+        ctx.fill();
       }
     }
 
