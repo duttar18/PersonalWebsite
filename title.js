@@ -89,7 +89,8 @@ var held = [];
 var drag = false;
 function mouseDown(event){ 
   for(var i =0; i<points.length; i++){
-    if(distance(event.clientX-coffset.left,points[i].x,event.clientY-coffset.top,points[i].y)<15){
+    if( (Math.abs(event.clientX-coffset.left-points[i].x)<= (w/(ascii[0].length+1))/3 ) &&
+        (Math.abs(event.clientY-coffset.top-points[i].y)<= (h/(ascii.length+1)))/3  ){
       held.push(i);
     }
   }
