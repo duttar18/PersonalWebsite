@@ -18,8 +18,51 @@
     </header>
 
     <section>
-        <h1>Title of article</h1>
-        
+        <h1>Education</h1>
+    </section>
+
+    <section>
+        <h1>Hobbies</h1>
+        <div class = abouttopic>
+            <div class = aboutslot>
+                <img src="images/knitting.jpg" alt="Knitting">
+                <p>Knitting</p>
+            </div>
+            <div class = aboutslot>
+                <img src="images/cooking.jpg" alt="Cooking">
+                <p>Cooking</p>
+            </div>
+            <div class = aboutslot>
+                <img src="images/writing.jpeg" alt="Writing">
+                <p>Writing</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h1>Favourites</h1>
+        <div class = abouttopic>
+            <div class = aboutslot>
+                <img src="images/LateRegistration.jpg" alt="Late Registration">
+                <p>Late Registration</p>
+            </div>
+            <div class = aboutslot>
+                <img src="images/potatoesalad.jpg" alt="Potatoe Salad">
+                <p>Potatoe Salad</p>
+            </div>
+            <div class = aboutslot>
+                <img src="images/lemon.jpg" alt="Lemon">
+                <p>Lemon</p>
+            </div>
+            <div class = aboutslot>
+                <img src="images/orange.jpg" alt="Color Orange">
+                <p>Orange</p>
+            </div>
+            <div class = aboutslot>
+                <img src="images/umich.jpg" alt="UMICH">
+                <p>UMICH</p>
+            </div>
+        </div>
     </section>
 
     <footer>

@@ -10,7 +10,47 @@
     padding: 0px;
 }
 
+a {
+    text-decoration:none;
+ }
 
+.abouttopic{
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    flex-grow:0;
+    justify-content: center;
+}
+
+.aboutslot{
+    position: relative;
+    background: white;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    margin: 0px 10px 0px 10px;
+}
+.aboutslot img{
+    opacity: 1;
+    max-width:100%;
+    max-height:100%;
+    border-radius: 10px;
+}
+.aboutslot p{
+    position: absolute;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);   
+    font-weight:bold; 
+    color: red;
+}
+.aboutslot:hover p{
+    opacity: 1;
+}
+.aboutslot:hover img{
+    opacity: 0.2;
+}
 
 body {
     font-family: "Courier New";

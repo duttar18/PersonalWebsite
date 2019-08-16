@@ -50,8 +50,8 @@ var Str = function(a,b,k,l,e){
   this.e = e;
 };
 var cols = {
-  "0":"#ff7335",
-  "@":"#ff8888"
+  "0":"#ffdfa3",
+  "@":"#ffc375"
 };
 
 var ascii =[
@@ -79,6 +79,7 @@ for(var j = 0; j<(ascii.length+1); j+=1){
 }
 
 var kk = 0.1;
+var g = 0.1;
 
 for(var i = (ascii[0].length+1); i<points.length;i++){
   strings.push(new Str(i,i-(ascii[0].length+1),kk,h/((ascii.length+1)-1),100));
@@ -91,6 +92,8 @@ for(var i = (ascii[0].length+1)+1; i<points.length;i++){
 
 var held = [];
 var drag = false;
+var pmouseX=-1;
+var pmouseY=-1;
 function mouseDown(event){ 
   for(var i =0; i<points.length; i++){
     if( (Math.abs(event.clientX-coffset.left-points[i].x)<= (w/(ascii[0].length+1))/2 ) &&
@@ -102,6 +105,22 @@ function mouseDown(event){
   drag = true;
 };
 function mouseMove(event){
+  if(pmouseX==-1){
+    pmouseX=event.clientX-coffset.left;
+    pmouseY=event.clientY-coffset.top;
+  }
+  else if(!drag){
+    var wind = 0.8;
+    for(var i =0; i<points.length; i++){
+      if( (Math.abs(pmouseX-points[i].x)<= (w/(ascii[0].length+1))/2 ) &&
+          (Math.abs(pmouseY-points[i].y)<= (h/(ascii.length+1)))/2 && !this.p ){
+        points[i].vx=(event.clientX-coffset.left-pmouseX)*wind;
+        points[i].vy=(event.clientY-coffset.top-pmouseY)*wind;
+      }
+    }
+    pmouseX=event.clientX-coffset.left;
+    pmouseY=event.clientY-coffset.top;    
+  }
   for(var i=0; i<held.length;i++){
     points[held[i]].x = event.clientX-coffset.left;
     points[held[i]].y = event.clientY-coffset.top;
@@ -112,6 +131,7 @@ function mouseUp(){
   held = [];
 };
 function mouseOut(){
+  pmouseX=-1;
   drag = false;
   held = [];
 };
@@ -126,7 +146,8 @@ init();
 
 
 var shade = function(x1,y1,x2,y2,x3,y3,i,j){
-  var s = triarea(x1,y1,x2,y2,x3,y3)*2/(w/(ascii[0].length+1)*h/(ascii.length+1));
+  var s = triarea(x1,y1,x2,y2,x3,y3)*2/(w/(ascii[0].length+1)*h/(ascii.length+1))*kk/g;
+  if(s>1) s= 1;
   var col = cols[ascii[j].charAt(i)];
   return 'rgb(' + parseInt(col.substring(1,3), 16)*s + ','+  parseInt(col.substring(3,5), 16)*s +','+  parseInt(col.substring(5,7), 16)*s +')';
 };
@@ -149,7 +170,7 @@ function update(progress,e) {
     }
     for(var i=0; i<points.length; i++){
       points[i].vx+=points[i].ax;
-      points[i].vy+=points[i].ay+0.1;
+      points[i].vy+=points[i].ay+g;
       var lim = 80;
       var sp = distance(0,points[i].vx,0,points[i].vy);
       if(sp>lim){
